@@ -1,0 +1,41 @@
+{
+  "name"          : "might",
+  "version"       : "0.0.0",
+  "description"   : "Vested, auto-cancelling futures",
+  "homepage"      : "",
+  "keywords"      : [ "potential", "cancel", "future", "promise", "deferral", "async" ],
+  "author"        : "Nick Fargo",
+  "repository"    : {
+    "type"        : "git",
+    "url"         : "git://github.com/nickfargo/might.git"
+  },
+  "licenses" : [
+    {
+      "type"      : "MIT",
+      "url"       : "https://raw.github.com/nickfargo/might/master/LICENSE"
+    }
+  ],
+
+
+  "main"          : "might.js",
+  "directories" : {
+    "test"        : "test"
+  },
+  "scripts": {
+    "test"        : "echo \"Error: no test specified\" && exit 1"
+  },
+
+
+  "dependencies" : {
+    "state"       : "~0.1.0",
+    "will"        : "~0.0.0"
+  },
+  "devDependencies" : {
+    "grunt"                  : "~0.4.1",
+    "grunt-contrib-concat"   : "~0.1.3",
+    "grunt-contrib-uglify"   : "~0.2.0",
+    "grunt-contrib-connect"  : "~0.2.0",
+    "grunt-contrib-watch"    : "~0.3.1",
+    "chai"                   : ">=1.5.0"
+  }
+}
