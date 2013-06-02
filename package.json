@@ -1,9 +1,10 @@
 {
   "name"          : "might",
   "version"       : "0.0.0",
-  "description"   : "Vested, auto-cancelling futures",
+  "description"   : "Vested, disposable, auto-cancelling futures",
   "homepage"      : "",
-  "keywords"      : [ "potential", "cancel", "future", "promise", "deferral", "async" ],
+  "keywords"      : [ "future", "promise", "async", "potential", "disposable",
+                      "cancel" ],
   "author"        : "Nick Fargo",
   "repository"    : {
     "type"        : "git",

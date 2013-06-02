@@ -1,15 +1,15 @@
 ## Potential
 
-A **potential** is an auto-cancelling `Deferral`, which may finalize to any one
-of states `accepted`, `rejected`, or the additional state `canceled`.
+A **potential** is a *vested*, *disposable*, auto-cancelling `Deferral`.
 
 A `Potential` issues `Interest`s, an extension of `Promise`s, to consumers that
-`invest` in the `Potential`. Each such issuance is unique, and a retain count
-of `interests` issued is tracked by the owning `Potential`. If an `Interest`
-holder “loses interest” in a `Potential` before the fate of that `Potential`’s
-resolution is determined, it may `divest` its `Interest`, causing the owning
-`Potential` to disregard all callbacks previously registered to it via the
-divested `Interest`.
+`invest` in the `Potential` to express their interest in its eventual
+resolution. Each such issuance is unique, and a retain count of `interests`
+issued is tracked by the owning `Potential`. If an `Interest` holder “loses
+interest” in a `Potential` before the fate of that `Potential`’s resolution is
+determined, it may `divest` its `Interest`, causing the owning `Potential` to
+disregard all callbacks previously registered to it via the divested
+`Interest`.
 
 Cancellation is a strictly automated event. There is no available “cancel”
 method; a still `pending` `Potential` is only `canceled` upon determination
