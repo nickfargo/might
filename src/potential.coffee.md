@@ -12,9 +12,17 @@ disregard all callbacks previously registered to it via the divested
 `Interest`.
 
 Cancellation is a strictly automated event. There is no available “cancel”
-method; a still `pending` `Potential` is only `canceled` upon determination
+method; a still-`pending` `Potential` is only `canceled` upon determination
 that all previously `invest`ed entities have since `divest`ed their `Interest`s
 in the `Potential`’s eventual resolution.
+
+The `canceled` state is meant to express *conclusive incompletion* and the
+ultimate product of *indifference*; it is distinct from, and *not* a substate
+of the `rejected` state. Non-vested consumers may react to cancellation of a
+`Potential` of their own accord, including by `reject`ing an outer reactive
+`Deferral` or similar, but rejection is neither intrinsically related to nor an
+implication of cancellation.
+
 
     class Potential extends Deferral
 
