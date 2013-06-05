@@ -82,7 +82,7 @@ indices within the `Potential`’s store of `_callbacks`.
           _onceInterested: ( interest, stateName, callback ) ->
             interestId = interest?.id
             return unless interestId and @_interests?[ interestId ]?
-            index = @_callbacks[ stateName ]?.length|0
+            index = @_callbacks[ stateName ]?.length
             tables = @_interestTables or = {}
             table = tables[ stateName ] or = {}
             indices = table[ interestId ] or = []
