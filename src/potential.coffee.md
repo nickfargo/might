@@ -72,6 +72,10 @@ currently vested `Interest`s (by their `id`) with the callbacks they registered
 #### pending
 
         pending: state do =>
+
+Enclose a free function that instigates a resolution to the `cancelled` state.
+This is `call`ed when the last `Interest` is `divest`ed.
+
           cancel = @resolverToState 'canceled'
 
 ##### _onceInterested
@@ -152,4 +156,7 @@ allowing it possibly to be `canceled` later in the event that all issued
 #### resolved.canceled
 
           canceled: state 'final',
+
+##### once
+
             once: @invokeIff 'canceled'
