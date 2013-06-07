@@ -16,7 +16,7 @@ consumers `divest` their `Interest`s in that `Potential`.
         @getState = -> potential.state().name
 
         @once = ( stateName, callback ) ->
-          potential._onceInterested this, stateName, callback
+          potential._onceFromInterest this, stateName, callback
           this
 
         @divest = ->
