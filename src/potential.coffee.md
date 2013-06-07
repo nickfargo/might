@@ -78,12 +78,12 @@ This is `call`ed when the last `Interest` is `divest`ed.
 
           cancel = @resolverToState 'canceled'
 
-##### _onceInterested
+##### _onceFromInterest
 
 Accepts callback registrations from an issued `Interest`, and tracks their
 indices within the `Potential`’s store of `_callbacks`.
 
-          _onceInterested: ( interest, stateName, callback ) ->
+          _onceFromInterest: ( interest, stateName, callback ) ->
             interestId = interest?.id
             return unless interestId and @_interests?[ interestId ]?
             index = @_callbacks[ stateName ]?.length
