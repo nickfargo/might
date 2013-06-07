@@ -1,10 +1,10 @@
 ## Potential
 
-A **potential** is a *vested*, *disposable*, auto-cancelling `Deferral`.
+A **potential** is a vested, disposable, auto-cancelling `Deferral`.
 
 A `Potential` issues `Interest`s, an extension of `Promise`s, to consumers that
 `invest` in the `Potential` to express their interest in its eventual
-resolution. Each such issuance is unique, and a retain count of `interests`
+resolution. Each such issuance is unique, and a retain count of `Interest`s
 issued is tracked by the owning `Potential`. If an `Interest` holder “loses
 interest” in a `Potential` before the fate of that `Potential`’s resolution is
 determined, it may `divest` its `Interest`, causing the owning `Potential` to
@@ -16,12 +16,12 @@ method; a still-`pending` `Potential` is only `canceled` upon determination
 that all previously `invest`ed entities have since `divest`ed their `Interest`s
 in the `Potential`’s eventual resolution.
 
-The `canceled` state is meant to express *conclusive incompletion* and the
-ultimate product of *indifference*; it is distinct from, and *not* a substate
-of the `rejected` state. Non-vested consumers may react to cancellation of a
-`Potential` of their own accord, including by `reject`ing an outer reactive
-`Deferral` or similar, but rejection is neither intrinsically related to nor an
-implication of cancellation.
+The `canceled` state is meant to express *conclusive incompletion*, and the
+ultimate product of *indifference* — from this it follows that `canceled` is
+distinct from, and thus *not* a substate of the `rejected` state. Non-vested
+consumers may, of their own accord, react to cancellation of a `Potential`,
+including by `reject`ing an outer reactive `Deferral` or similar, but rejection
+is neither intrinsically related to, nor an implication of cancellation.
 
 
     class Potential extends Deferral
