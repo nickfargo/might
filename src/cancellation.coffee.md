@@ -1,3 +1,14 @@
+    { state } = require '../../will'
+
+    Potential = require './potential'
+
+    { slice } = Array::
+    { isArray } = require 'util'
+
+    module.exports =
+
+
+
 ## Cancellation
 
 A **cancellation** is a `Potential` that is both initialized and inherently

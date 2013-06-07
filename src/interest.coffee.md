@@ -1,3 +1,9 @@
+    { Promise } = require '../../will'
+
+    module.exports =
+
+
+
 ## Interest
 
 An **interest** is a specialized `Promise` to a `Potential`. An `Interest` can

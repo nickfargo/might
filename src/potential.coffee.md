@@ -1,3 +1,13 @@
+    { Deferral, state } = require '../../will'
+
+    Interest = require './interest'
+
+    { isArray } = require 'util'
+
+    module.exports =
+
+
+
 ## Potential
 
 A **potential** is a vested, disposable, auto-cancelling `Deferral`.
