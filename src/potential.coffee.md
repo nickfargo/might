@@ -46,8 +46,6 @@ is neither intrinsically related to, nor an implication of cancellation.
       constructor: ->
         super
 
-        @_callbacks.canceled = null
-
 At its inception a `Potential` is “self-interested”. Implementors may choose to
 issue an `Interest` to a consumer prior to `divest`ing a `Potential` of its
 self-interest, thereby conferring to the collective of issued `Interest`s the
