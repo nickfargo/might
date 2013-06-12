@@ -12,7 +12,7 @@
 
 A **potential** is a vested, disposable, auto-cancelling **future**.
 
-A `Potential` is a type of `Deferral` that issues `Interest`s, an extension of
+`Potential` is a type of `Deferral` that issues `Interest`s, an extension of
 `Promise`s, to consumers who `invest` in the `Potential` to express their
 interest in its eventual resolution. As with a `Promise` to a `Deferral`, an
 `invest`ed consumer may use its `Interest` to observe and register callbacks to

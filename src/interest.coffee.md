@@ -8,8 +8,9 @@
 
 An **interest** is a specialized `Promise` to a `Potential`. An `Interest` can
 be `divest`ed, or “revoked”, by a consumer, causing its associated `Potential`
-to disavow all callbacks previously registered via that `Interest`. In addition
-a `Potential` is automatically `canceled` once all previously invested
+to disavow all callbacks previously registered via that `Interest`.
+
+A `Potential` is automatically `canceled` once all previously invested
 consumers `divest` their `Interest`s in that `Potential`.
 
     class Interest extends Promise

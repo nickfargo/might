@@ -11,9 +11,9 @@
 
 ## Cancellation
 
-A **cancellation** is a `Potential` that is both initialized and inherently
-finalized to its `canceled` state, effectively equivalent to an immediately
-divested proper `Potential`.
+An explicit **cancellation** is a `Potential` that is both initialized and
+inherently finalized to its `canceled` state, equivalent in effect to an
+immediately divested proper `Potential`.
 
 See also: `Acceptance`, `Rejection`
 
