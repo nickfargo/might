@@ -85,6 +85,8 @@ currently vested `Interest`s (by their `id`) with the callbacks they registered
 
         pending: state do =>
 
+          { later } = this
+
 Enclose a free function that instigates a resolution to the `cancelled` state.
 This is `call`ed when the last `Interest` is `divest`ed.
 
@@ -156,6 +158,14 @@ allowing it possibly to be `canceled` later in the event that all issued
               @_interests = @_interestTables = null
               cancel.call this
             return
+
+##### autodivest
+
+Asynchronously schedules `this` `Potential` to divest its self-interest.
+Interested consumers have until the end of the current turn of the event loop
+to `invest`, or the `Potential` will be automatically canceled.
+
+          autodivest: -> later => do @divest
 
 
 #### resolved
