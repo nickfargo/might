@@ -6,12 +6,14 @@
 
 ## Interest
 
-An **interest** is a specialized `Promise` to a `Potential`. An `Interest` can
-be `divest`ed, or “revoked”, by a consumer, causing its associated `Potential`
-to disavow all callbacks previously registered via that `Interest`.
+An **interest** is a specialized `Promise` — a *read-only attenuation* — to a
+`Potential`. An `Interest` can be `divest`ed, or “revoked”, by a consumer,
+causing its associated `Potential` to disavow all callbacks previously
+registered via that `Interest`.
 
-A `Potential` is automatically `canceled` once all previously `invest`ed
-consumers, as well as the `Potential` itself, have `divest`ed themselves.
+A `Potential` is automatically `canceled` once it and all `Interest`-holding
+consumers have `divest`ed themselves of their interest in the `Potential`’s
+fate.
 
     class Interest extends Promise
       noop = ->
