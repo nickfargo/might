@@ -81,31 +81,36 @@ currently vested `Interest`s (by their `id`) with the callbacks they registered
       state @::,
 
 
-#### pending
+#### unresolved
 
-        pending: state do =>
+        unresolved: state 'abstract',
 
-          { later } = this
+
+#### unresolved.pending
+
+          pending: state do =>
+
+            { later } = this
 
 Enclose a free function that instigates a resolution to the `cancelled` state.
 This is `call`ed when the last `Interest` is `divest`ed.
 
-          cancel = @resolverToState 'canceled'
+            cancel = @resolverToState 'canceled'
 
 ##### _onceFromInterest
 
 Accepts callback registrations from an issued `Interest`, and tracks their
 indices within the `Potential`’s store of `_callbacks`.
 
-          _onceFromInterest: ( interest, stateName, callback ) ->
-            interestId = interest?.id
-            return unless interestId and @_interests?[ interestId ]?
-            index = @_callbacks[ stateName ]?.length
-            tables = @_interestTables or = {}
-            table = tables[ stateName ] or = {}
-            indices = table[ interestId ] or = []
-            indices.push index
-            @once stateName, callback
+            _onceFromInterest: ( interest, stateName, callback ) ->
+              interestId = interest?.id
+              return unless interestId and @_interests?[ interestId ]?
+              index = @_callbacks[ stateName ]?.length
+              tables = @_interestTables or = {}
+              table = tables[ stateName ] or = {}
+              indices = table[ interestId ] or = []
+              indices.push index
+              @once stateName, callback
 
 ##### invest
 
@@ -116,17 +121,17 @@ If `self` is a reference to `this`, `invest` reasserts the “self-interest” o
 `this`, which pegs the `_interestCount` to a minumum of `1`, thus preventing
 cancellation.
 
-          invest: ( self ) ->
-            if self is this
-              unless @_selfInterested
+            invest: ( self ) ->
+              if self is this
+                unless @_selfInterested
+                  ++@_interestCount
+                  @_selfInterested = yes
+                this
+              else
                 ++@_interestCount
-                @_selfInterested = yes
-              this
-            else
-              ++@_interestCount
-              interest = new Interest this
-              interestsIssued = @_interests or = {}
-              interestsIssued[ interest.id ] = interest
+                interest = new Interest this
+                interestsIssued = @_interests or = {}
+                interestsIssued[ interest.id ] = interest
 
 ##### divest
 
@@ -138,26 +143,26 @@ With no arguments provided, the `Potential` `divest`s its own “self-interest�
 allowing it possibly to be `canceled` later in the event that all issued
 `Interest`s themselves `divest` before `this` has reached a `completed` state.
 
-          divest: ( interest ) ->
-            return unless @_interestCount
+            divest: ( interest ) ->
+              return unless @_interestCount
 
-            if interest?
-              interestId = interest.id
-              return unless @_interests?[ interestId ]?
-              @_interests[ interestId ] = null
-              { _callbacks } = this
-              for stateName, table of @_interestTables when table?
-                unless isArray queue = _callbacks[ stateName ]
-                  queue = _callbacks[ stateName ] = []
-                else queue[ index ] ?= null for index in table[ interestId ]
-            else
-              return if not @_selfInterested
-              @_selfInterested = no
+              if interest?
+                interestId = interest.id
+                return unless @_interests?[ interestId ]?
+                @_interests[ interestId ] = null
+                { _callbacks } = this
+                for stateName, table of @_interestTables when table?
+                  unless isArray queue = _callbacks[ stateName ]
+                    queue = _callbacks[ stateName ] = []
+                  else queue[ index ] ?= null for index in table[ interestId ]
+              else
+                return if not @_selfInterested
+                @_selfInterested = no
 
-            if --@_interestCount is 0
-              @_interests = @_interestTables = null
-              cancel.call this
-            return
+              if --@_interestCount is 0
+                @_interests = @_interestTables = null
+                cancel.call this
+              return
 
 ##### autodivest
 
@@ -165,7 +170,7 @@ Asynchronously schedules `this` `Potential` to divest its self-interest.
 Interested consumers have until the end of the current turn of the event loop
 to `invest`, or the `Potential` will be automatically canceled.
 
-          autodivest: -> later => do @divest
+            autodivest: -> later => do @divest
 
 
 #### resolved
