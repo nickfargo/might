@@ -16,19 +16,35 @@ consumers have `divest`ed themselves of their interest in the `Potential`’s
 fate.
 
     class Interest extends Promise
-      noop = ->
       uid = 0
+
+      allowed =
+        getStateName: yes
+        _onceFromInterest: yes
+        invest: yes
+        divest: yes
+
+      noop = ->
 
       constructor: ( potential ) ->
         @id = 'interest' + ( uid += 1 )
 
-        @getState = -> potential.state().name
 
-        @once = ( stateName, callback ) ->
-          potential._onceFromInterest this, stateName, callback
-          this
+        @_apply = ( method, args ) ->
+          return unless allowed[ method ]
+          result = potential[ method ].apply potential, args
+          result = this if result is potential
+          @_apply = noop if method is 'divest'
+          result
 
-        @divest = ->
-          @divest = noop
-          potential.divest this
-          return
+      getStateName: ->
+        @_apply 'getStateName'
+
+      invest: ->
+        @_apply 'invest'
+
+      divest: ->
+        @_apply 'divest', [this]
+
+      once: ( stateName, callback ) ->
+        @_apply '_onceFromInterest', [ this, stateName, callback ]
