@@ -15,8 +15,8 @@ A **potential** is a vested, disposable, auto-cancelling **future**.
 `Potential` is a type of `Deferral` that issues `Interest`s, an extension of
 `Promise`s, to consumers who `invest` in the `Potential` to express their
 interest in its eventual resolution. As with a `Promise` to a `Deferral`, an
-`invest`ed consumer may use its `Interest` to observe and register callbacks to
-its associated `Potential`.
+`invest`ed consumer may use its acquired `Interest` to observe and register
+callbacks to its associated `Potential`.
 
 Each call to `invest` issues a unique `Interest`. A retain count of `Interest`s
 issued is tracked by the owning `Potential`. If an `Interest` holder “loses
@@ -32,10 +32,9 @@ in the `Potential`’s eventual resolution.
 
 The `canceled` state is meant to express *conclusive incompletion*, and the
 ultimate product of *indifference* — from this it follows that `canceled` is
-distinct from, and thus *not* a substate of the `rejected` state. Non-vested
-consumers may, of their own accord, react to cancellation of a `Potential`,
-including by `reject`ing an outer reactive `Deferral` or similar, but rejection
-is neither intrinsically related to, nor an implication of cancellation.
+distinct from, and thus *not* intrinsically a substate of the `rejected` state.
+However, non-vested consumers may of their own accord react to cancellation of
+a `Potential` by `reject`ing an outer reactive `Deferral` or similar.
 
 
     class Potential extends Deferral
