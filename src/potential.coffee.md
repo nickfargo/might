@@ -176,7 +176,7 @@ to `invest`, or the `Potential` will be automatically canceled.
 
 > Also includes the `completed` state subtree inherited from `Deferral`.
 
-        resolved: state 'abstract',
+        resolved: state
 
 
 #### resolved.canceled
