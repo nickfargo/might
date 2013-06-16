@@ -82,7 +82,7 @@ currently vested `Interest`s (by their `id`) with the callbacks they registered
 
 #### unresolved
 
-        unresolved: state 'abstract',
+        unresolved: state
 
 
 #### unresolved.pending
