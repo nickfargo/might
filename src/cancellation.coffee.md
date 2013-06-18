@@ -1,4 +1,4 @@
-    { state } = require '../../will'
+    state = require 'state'
 
     Potential = require './potential'
 

@@ -1,4 +1,4 @@
-    { Promise } = require '../../will'
+    { Promise } = require 'will'
 
     module.exports =
 

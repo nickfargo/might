@@ -1,4 +1,5 @@
-    { Deferral, state } = require '../../will'
+    { Deferral } = require 'will'
+    state = require 'state'
 
     Interest = require './interest'
 
