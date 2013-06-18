@@ -18,7 +18,7 @@
   ],
 
 
-  "main"          : "./lib/index",
+  "main"          : "lib/index",
   "directories" : {
     "test"        : "test"
   },
@@ -30,9 +30,10 @@
 
   "dependencies" : {
     "state"       : "~0.1.0",
-    "will"        : "~0.0.0"
+    "will"        : "0.0.0"
   },
   "devDependencies" : {
-    "chai"                   : ">=1.5.0"
+    "mocha"       : "*",
+    "chai"        : ">=1.5.0"
   }
 }
